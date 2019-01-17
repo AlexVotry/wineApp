@@ -4,7 +4,12 @@
   "description": "wine tasting app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
